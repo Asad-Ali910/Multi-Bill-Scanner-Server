@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import DecodeRouter from "./routes/DecodeRoute.js"
+import ExtractBillInfoRouter from "./routes/ExtractBillInfoRoute.js"
 
 const App = express()
 
@@ -8,6 +8,6 @@ const App = express()
 App.use(cors())
 App.use(express.json({limit: "10mb"}))
 //Routes
-App.use("/api", DecodeRouter)
+App.use("/api", ExtractBillInfoRouter)
 
 export default App

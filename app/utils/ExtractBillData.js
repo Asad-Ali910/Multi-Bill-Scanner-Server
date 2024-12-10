@@ -12,11 +12,7 @@ export const extractBillData = (data) => {
   curentDate = convertToMilliseconds(curentDate)
   
   let panalty;
-
-  console.log("First Date: ",firstDate)
-  console.log("Second Date: ", secondDate)
-  console.log("current date: ", curentDate)
-
+  
   if (secondDate < curentDate) {
     panalty = 2;
   } else if (firstDate < curentDate) {
