@@ -38,9 +38,9 @@ export const extractElectricityBillData = (data) => {
 };
 
 export const extractGasBillData = (gasBill) => {
-  const referenceNumber = gasBill.slice(5, 16);
+  const referenceNumber = gasBill.substring(5, 16);
 
-  let firstDate = gasBill.slice(26, 32);
+  let firstDate = gasBill.substring(26, 32);
   firstDate = convertToMilliseconds();
 
   let curentDate = getCurrentDateInDDMMYY();
@@ -54,9 +54,9 @@ export const extractGasBillData = (gasBill) => {
     panalty = 0;
   }
 
-  let Panalty_0_amount = Number(gasBill.slice(32, 42));
+  let Panalty_0_amount = Number(gasBill.substring(32, 42));
   let Panalty_1_amount =
-    Number(gasBill.slice(32, 42)) + Number(gasBill.slice(42, 48));
+    Number(gasBill.substring(32, 42)) + Number(gasBill.substring(42, 48));
 
   return {
     inputType: "Scanned",
