@@ -41,10 +41,10 @@ export const extractGasBillData = (gasBill) => {
   const referenceNumber = gasBill.substring(5, 16);
 
   let firstDate = gasBill.substring(26, 32);
-  firstDate = convertToMilliseconds();
+  firstDate = convertToMilliseconds(firstDate);
 
   let curentDate = getCurrentDateInDDMMYY();
-  curentDate = convertToMilliseconds();
+  curentDate = convertToMilliseconds(curentDate);
 
   let panalty;
 
