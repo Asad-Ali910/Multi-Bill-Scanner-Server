@@ -1,11 +1,12 @@
-import { extractBillData } from "../utils/ExtractBillData.js";
+import {
+  extractElectricityBillData,
+  extractGasBillData,
+} from "../utils/ExtractBillData.js";
 
 const ExtractBillInfo = async (req, res) => {
   try {
     const { BarcodeData } = req.body;
 
-    console.log(BarcodeData.length)
-    
     // Validate input
     if (!BarcodeData || typeof BarcodeData !== "string") {
       return res.status(400).json({
@@ -16,8 +17,13 @@ const ExtractBillInfo = async (req, res) => {
 
     // Check the length of BarcodeData
     if (BarcodeData.length === 60) {
-      const billData = extractBillData(BarcodeData);
+      const billData = extractElectricityBillData(BarcodeData);
       // Debug extracted data
+      return res.status(200).json({ billData });
+    }
+
+    if (BarcodeData.length === 50) {
+      const billData = extractGasBillData(BarcodeData);
       return res.status(200).json({ billData });
     }
 
