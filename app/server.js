@@ -1,7 +1,5 @@
 import App from "./app.js";
 import dbConnect from "./db/dbConnect.js";
-import { createServer } from "@vercel/node"; // Vercel's Node wrapper
-
 const PORT = process.env.PORT || 3000;
 
 // Connect to DB first
@@ -15,5 +13,8 @@ dbConnect()
     console.log("Database Connection failed with error: ", error);
   });
 
-// Export handler for Vercel
-export default createServer(App);
+App.listen(PORT, ()=>{
+  console.log("Sever is connected on Vercel Port")
+})
+
+export default App
