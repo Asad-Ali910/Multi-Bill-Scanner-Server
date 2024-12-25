@@ -13,8 +13,4 @@ dbConnect()
     console.log("Database Connection failed with error: ", error);
   });
 
-App.listen(PORT, ()=>{
-  console.log("Sever is connected on Vercel Port")
-})
-
-export default App
+export default App;
