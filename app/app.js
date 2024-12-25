@@ -19,4 +19,8 @@ App.use('/api', LoginUserRouter);
 App.use('/api', ValidateTokensRoute);
 App.use('/api', otpVerificationRoute);
 
+App.get('/api',(req, res)=>{    
+    res.send("Hello Wolrdd")
+})
+
 export default App
