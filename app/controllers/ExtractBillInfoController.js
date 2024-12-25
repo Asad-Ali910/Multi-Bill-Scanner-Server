@@ -3,7 +3,7 @@ import {
   extractGasBillData,
 } from "../utils/ExtractBillData.js";
 
-const ExtractBillInfo = async (req, res) => {
+const ExtractBillInfo = async (req, res, next) => {
   try {
     const { BarcodeData } = req.body;
 
@@ -15,23 +15,25 @@ const ExtractBillInfo = async (req, res) => {
       });
     }
 
-    // Check the length of BarcodeData
+    let billData;
+
+    // Extract bill data based on length
     if (BarcodeData.length === 60) {
-      const billData = extractElectricityBillData(BarcodeData);
-      // Debug extracted data
-      return res.status(200).json({ billData });
+      billData = extractElectricityBillData(BarcodeData);
+    } else if (BarcodeData.length === 50) {
+      billData = extractGasBillData(BarcodeData);
+    } else {
+      return res.status(400).json({
+        code: "Input error",
+        error_message: "Bill is Invalid or not Available",
+      });
     }
 
-    if (BarcodeData.length === 50) {
-      const billData = extractGasBillData(BarcodeData);
-      return res.status(200).json({ billData });
-    }
+    // Store extracted bill data in request object
+    req.billData = billData;
 
-    // Invalid length
-    return res.status(400).json({
-      code: "Input error",
-      error_message: "Bill is Invalid or not Available",
-    });
+    // Proceed to authorization middleware
+    next();
   } catch (error) {
     console.error("Error in ExtractBillInfo:", error);
     return res.status(500).json({
