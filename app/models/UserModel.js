@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
       expires: function () {
-        return this.verified ? undefined : 100; // 300 seconds (5 min) if not verified
+        return this.verified ? undefined : 100;
       },
     },
     subscription: {

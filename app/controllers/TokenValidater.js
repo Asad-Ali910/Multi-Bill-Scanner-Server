@@ -10,7 +10,7 @@ const ValidateAccessToken = (req, res) => {
 
   if (!token) {
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Unauthorized request",
     });
   }
 

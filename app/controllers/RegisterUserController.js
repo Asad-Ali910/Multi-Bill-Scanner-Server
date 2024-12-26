@@ -71,8 +71,8 @@ const RegisterUserController = async (req, res) => {
           
     const otp = crypto.randomInt(100000, 999999).toString();
     const newUser = await User.registerUser(name, username, email, password, otp)
-    sendOtp(email, otp);
-
+    
+    await sendOtp(email, otp);
     // Respond with success message
     return res.status(200).json({
       title: "otp verification required!",

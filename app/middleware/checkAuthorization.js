@@ -13,6 +13,7 @@ const checkAuthorization = (req, res, next) => {
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({
+        code: "ACCESS_TOKEN_INVALID",
         message: "Unauthorized request",
       });
     }
