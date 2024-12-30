@@ -15,7 +15,7 @@ const checkAuthorization = (req, res, next) => {
       return res.status(401).json({
         code: "ACCESS_TOKEN_INVALID",
         message: "Unauthorized request",
-      });
+      }); 
     }
 
     res.status(200).json({

@@ -1,26 +1,19 @@
-import express, { application } from "express"
-import cors from "cors"
-import ExtractBillInfoRouter from "./routes/ExtractBillInfoRoute.js"
-import RegisterUserRouter from "./routes/RegisterUserRoute.js"
-import LoginUserRouter from "./routes/LoginUserRoute.js"
-import ValidateTokensRoute from "./routes/ValidateAccessTokenRoute.js"
-import otpVerificationRoute from "./routes/optverificationRoute.js"
+import express, { application } from "express";
+import cors from "cors";
+import userRouter from "./routes/User.Route";
 
-const App = express()
+import { errorMiddleware } from "./middleware/errorMiddleware";
+
+const App = express();
 
 //Middlewares
 App.use(cors());
-App.use(express.json({limit: "10mb"}));
+App.use(express.json({ limit: "10mb" }));
 
-//Routes
-App.use("/api", ExtractBillInfoRouter);
-App.use("/api", RegisterUserRouter);
-App.use('/api', LoginUserRouter);
-App.use('/api', ValidateTokensRoute);
-App.use('/api', otpVerificationRoute);
+// api routes for user
+App.use("/api/auth/user", userRouter);
 
-App.get('/api',(req, res)=>{    
-    res.send("Hello Wolrdd")
-})
+// custom middleware for handling custom errors
+App.use(errorMiddleware);
 
-export default App
+export default App;

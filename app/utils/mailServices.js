@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendOtp = async (email, otp) => {
+const sendMail = async (email, otp) => {
   const info = await transporter.sendMail({
     from: '"Multi Bill Scanner App Community" <no-reply@multibillscanner.com>',
     to: email,
@@ -46,4 +46,4 @@ const sendOtp = async (email, otp) => {
   console.log(`OTP email sent: ${info.messageId}`);
 };
 
-export { sendOtp };
+export { sendMail };
