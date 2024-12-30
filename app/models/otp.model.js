@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import { LimitExceededError } from "../utils/CustomError";
+import { LimitExceededError } from "../utils/CustomError.js";
 
 // OTP Schema
 const otpSchema = new Schema({

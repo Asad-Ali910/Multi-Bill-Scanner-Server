@@ -6,7 +6,7 @@ import {
   registerUser,
   resendOtp,
   verifyOtp,
-} from "../controllers/user.controller";
+} from "../controllers/user.controller.js";
 
 const userRouter = express.Router();
 
